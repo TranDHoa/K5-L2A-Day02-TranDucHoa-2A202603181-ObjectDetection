@@ -60,15 +60,23 @@ Dẫn tới `outputs/annotation_evaluation.json` trong repo. Nếu rework, ghi �
 Trả lời bốn câu hỏi cuối notebook:
 
 1. Lớp nào recall thấp nhất? Ảnh nào minh họa?
+
 Lớp bus thấp nhất với recall là 0.Ảnh drive_002
+
 2. Nếu mAP50 cao nhưng mAP50–95 thấp, cần kiểm điều gì trên box?
+
 Cần kiểm tra độ chính xác vị trí kích thước bounding box
+
 3. Lỗi class nào có thể liên quan guideline? Dữ kiện nào hỗ trợ nhận xét?
+
 Lỗi id class của gold label, id chuẩn phải theo thứ tự là car, van, truck, bus theo thứ tự 0, 1, 2, 3 trong đáp án ground true. Tôi đã thử đổi theo id đó và được kết quả là f1 = 0.832, mean_iou_of_matches = 0.8605.
+
 4. Vì sao không dùng 10 ảnh eval để train? Vai trò validation của chúng trong notebook là gì?
+
 50 ảnh train được sử dụng để cập nhật trọng số mô hình, còn 10 ảnh eval dùng để validation, theo dõi metrics và lựa chọn best.pt.
 Nếu đưa 10 ảnh eval vào train, sẽ xảy ra rò rỉ dữ liệu giữa hai tập, khiến kết quả đánh giá không còn độc lập với dữ liệu học.
 Ngoài ra, do tập eval được dùng để chọn best.pt, nó cũng không phải test set độc lập hoàn toàn.
+
 ## 6. Khó khăn và cách xử lý
 
 | Bước/thời điểm | Lỗi quan sát | Cách đã thử | Kết quả/còn thiếu |
